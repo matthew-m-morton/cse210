@@ -114,10 +114,13 @@ class Program
         Console.WriteLine("Please choose a file name.");
         string savefile = Console.ReadLine();
 
-        // using (StreamWriter outputFile = new StreamWriter(savefile))
-        // {
-        //     foreach( )
-        // }
+        using (StreamWriter outputFile = new StreamWriter(savefile))
+        {
+            foreach( Entry entry in journal._entries)
+            {
+                outputFile.WriteLine($"{entry._date}~~{entry._prompt}~~{entry._response}");
+            }
+        }
 
     }
 
