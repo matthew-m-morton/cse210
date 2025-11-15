@@ -33,7 +33,7 @@ public class ReflectingActivity : Activity
         Timer.Set(_duration);
         while (!Timer.IsExpired())
         {
-            Console.WriteLine(">" + _prompts[random.Next(0, _prompts.Count() - 1)]);
+            Console.WriteLine(">" + _questions[random.Next(0, _questions.Count() - 1)]);
             Timer.PauseWithAnimation(_duration / 2);
             Thread.Sleep(100);
         }
