@@ -17,11 +17,13 @@ public class ListingActivity : Activity
         Console.WriteLine(" --- " + _questions[random.Next(0, _questions.Count() - 1)] + " --- ");
         Console.WriteLine("You may begin in: ");
         Timer.Countdown(5);
+        Console.Clear();
         List<string> responses = new List<string>{};
 
         Timer.Set(base._duration);
         while (!Timer.IsExpired())
         {
+            Console.Write(">");
             string response = Console.ReadLine();
             responses.Add(response);
         }
