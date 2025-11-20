@@ -8,6 +8,7 @@ class Program
         string choice = "";
         List<Goal> goals = new List<Goal>();
         Console.Clear();
+        Console.WriteLine("Welcome to the Goal tracker.");
 
 
         while(choice != "6")
@@ -85,6 +86,7 @@ class Program
     }
     static void ListGoal(List<Goal> goals)
     {
+        Console.Clear();
         Console.WriteLine("The goals are:");
         int count = 1;
         foreach (Goal goal in goals)
@@ -111,16 +113,23 @@ class Program
     }
     static void SaveGoals(List<Goal> goals)
     {
+        Console.Clear();
         Console.WriteLine("Would you like to save to an existing file? (Y/N) ");
         string answer = Console.ReadLine();
+        string saveFile;
         if (answer == "Y" || answer == "Yes" || answer == "y" || answer == "yes")
         {
-            DisplayFileNames();
+            saveFile = SelectedFileName();
         }
-        Console.WriteLine("Please choose a file name.");
-        string savefile = Console.ReadLine();
+        else
+        {
+            Console.Clear();
+            Console.WriteLine("What would you like to name your new file?");
+            saveFile = Console.ReadLine();
+        }
 
-        using (StreamWriter outputFile = new StreamWriter(savefile))
+
+        using (StreamWriter outputFile = new StreamWriter(saveFile))
         {
             foreach(Goal goal in goals )
             {
@@ -128,23 +137,28 @@ class Program
             }
         }      
     } 
-    static void DisplayFileNames()
+    static string SelectedFileName()
     {
+        int count = 1;
+        Console.WriteLine("Files: ");
         string folderPath = Directory.GetCurrentDirectory();
         string[] textFiles = Directory.GetFiles(folderPath, "*.csv");
         foreach (string file in textFiles)
         {
-            Console.WriteLine($"{Path.GetFileName(file)}");
+            Console.WriteLine($"{count}. {Path.GetFileName(file)}");
+            count ++;
         }
-
+        Console.Write("Which file(#) would you like to select. ");
+        int numberselection = int.Parse(Console.ReadLine());
+        string selectedFileName = textFiles[numberselection-1];
+        return selectedFileName;
     }
     static List<Goal> LoadGoals()
     {
+        Console.Clear();
         List<Goal> goals = new List<Goal>();
         Console.WriteLine("What File would you like to Load?");
-        DisplayFileNames();
-
-        string selectedFile = Console.ReadLine();
+        string selectedFile = SelectedFileName();
         string[] lines = System.IO.File.ReadAllLines(selectedFile);
         
         foreach(string line in lines)
@@ -167,7 +181,7 @@ class Program
 
         }
         Console.Clear();
-        Console.WriteLine("file loaded");
+        Console.WriteLine("File Loaded Successfully");
         
         return goals;
     }
