@@ -1,24 +1,22 @@
-using System.Diagnostics.CodeAnalysis;
-
-class Dice
+public class Dice
 {
-    // Attributes
+// Attributes
     private int _sides;
     private int _quantity;
     private int _modifier;
     private bool _manual;
 
-    // Constructors
-public Dice(int sides, int quantity, int modifier, bool manual)
+// Constructors
+    public Dice(int sides, int quantity, int modifier, bool manual)
     {
         _sides = sides;
         _quantity = quantity;
         _modifier = modifier;
         _manual = manual;
-    }
+    }   
 
-
-public int RollDice()
+// Methods
+    public int RollDice()
     {
         int roll;
         if (_manual)
