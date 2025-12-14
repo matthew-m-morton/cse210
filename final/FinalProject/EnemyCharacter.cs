@@ -38,7 +38,7 @@ public class EnemyCharacter : Character
 
     }
     public override string ToString(){
-        string charString = "Enemy"+"~~"+_name+"~~"+_hp+"~~"+_hpMax+"~~"+_armorClass+"~~"+_abilityScores+"~~"+_attacks+"~~"+_speed+"~~"+_cr+"~~"+_actions;
+        string charString = "Enemy"+"~~~"+_name+"~~~"+_hp+"~~~"+_hpMax+"~~~"+_armorClass+"~~~"+_abilityScores+"~~~"+_attacks+"~~~"+_speed+"~~~"+_cr+"~~~"+_actions;
         return charString;
     }
 

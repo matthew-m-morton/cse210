@@ -4,12 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        TestMenu()
+        TestMenu();
     }
         static void TestMenu()
     {
         Menu menu = new Menu();
-        menu.BuildMenu();
+        menu.StatMenu();
     }
     static void TestDice()
     {

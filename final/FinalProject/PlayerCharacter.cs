@@ -41,8 +41,8 @@ public class PlayerCharacter : Character
 
     }
     public override string ToString(){
-        string charString = "Player"+"~~"+_name+"~~"+_hp+"~~"+_hpMax+"~~"+_armorClass+"~~"+_abilityScores+"~~"
-        +_attacks+"~~"+_speed+"~~"+_level+"~~"+_charClass+"~~"+_spellSlots+"~~"+_proficiencies;
+        string charString = "Player"+"~~~"+_name+"~~~"+_hp+"~~~"+_hpMax+"~~~"+_armorClass+"~~~"+_abilityScores+"~~~"
+        +_attacks+"~~~"+_speed+"~~~"+_level+"~~~"+_charClass+"~~~"+_spellSlots+"~~~"+_proficiencies;
         return charString;
 
     }
