@@ -1,15 +1,12 @@
 public abstract class Character
 {
 // Attributes
+    protected string _name;
     protected int _hp;
     protected int _hpMax;
     protected int _armorClass;
     protected int[] _abilityScores;
-    protected List<string> _resists;
-    protected List<string> _weakTos;
     protected List<Attack> _attacks;
-    protected List<string> _languages;
-
     protected int _speed;
 
 
@@ -18,19 +15,38 @@ public abstract class Character
     {
         
     }
-    public Character(int hp, int hpMax, int armorClass, int[] abilityScores, List<string> resists, List<string> weakTos, List<Attack> attacks, List<string> languages, int speed)
+    public Character(string name, int hp, int hpMax, int armorClass, int[] abilityScores,  List<Attack> attacks, int speed)
     {
-        
+        _name = name;
+        _hp = hp;
+        _hpMax = hpMax;
+        _armorClass = armorClass;
+        _abilityScores = abilityScores;
+        _attacks = attacks;
+        _speed = speed;
     }
 
 // Methods
     public abstract void Heal();
     public abstract void Damage();
-    public abstract void RollInit();
-    public abstract void Display();
-    public abstract void DisplayAttacks();
+    public int RollInit()
+    {
+        int dexMod = (_abilityScores[1] - 10) % 2;
+        Dice initiative = new Dice(20,1,dexMod);
+        return initiative.RollDice();
+    }
+    public abstract List<string> Display();
+    public  List<string> DisplayAttacks()
+    {
+        List<string> attackDisplayStrings = new List<string>{};
+        foreach(Attack attack in _attacks)
+        {
+            attackDisplayStrings.Add(attack.Display());
+        } 
+        return attackDisplayStrings;
+    }
     public abstract void DisplayDetail();
-    public abstract void ToString();
+    public abstract override string ToString();
 
     
 }

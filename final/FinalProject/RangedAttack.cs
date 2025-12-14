@@ -4,20 +4,23 @@ public class RangedAttack : Attack
     private int _normalRange;
     private int _maxRange;
 // Constructor
-    public RangedAttack() : base()
+    public RangedAttack(string name, string damage, int normalRange, int maxRange) : base(name, damage)
     {
-        
+        _normalRange = normalRange;
+        _maxRange = maxRange;
     }
 
 // Methods
-    public override void Display()
+    public override string Display()
     {
-        
-    }
-    public override void DisplayDetailed()
-    {
-        
+        string displayString = $"{_name},{_damage},{_normalRange}/{_maxRange}";
+        return displayString;
     }
 
-    
+    public override string ToString()
+    {
+        string attackString = "Ranged"+"~~"+_name+"~~"+_damage+"~~"+_normalRange+"~~"+_maxRange;
+
+        return attackString;
+    }
 }

@@ -7,30 +7,32 @@ public class Dice
     private bool _manual;
 
 // Constructors
-    public Dice(int sides, int quantity, int modifier, bool manual)
+    public Dice(int sides, int quantity, int modifier)
     {
         _sides = sides;
         _quantity = quantity;
         _modifier = modifier;
-        _manual = manual;
     }   
+
 
 // Methods
     public int RollDice()
     {
+        Console.Write("Would you like to roll manually? (true/false) ");
+        _manual = bool.Parse(Console.ReadLine());
         int roll;
         if (_manual)
         {
             Console.Write($"roll {_quantity}d{_sides}");
             if(_modifier > 0)
             {
-                Console.WriteLine($" and add {_modifier}");
+                Console.Write($" and add {_modifier}");
             }
             else if(_modifier < 0)
             {
-                Console.WriteLine($" and subtract {_modifier}");
+                Console.Write($" and subtract {_modifier}");
             }
-            Console.WriteLine("What did you roll?");
+            Console.Write($"\nWhat did you roll? ");
             roll = int.Parse(Console.ReadLine());
         }
         else 
@@ -38,6 +40,7 @@ public class Dice
             Random random = new Random();
             roll = random.Next(_quantity,_quantity*_sides) + _modifier;
         }
+        Console.WriteLine(roll);
         return roll;
     }
 }

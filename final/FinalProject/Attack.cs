@@ -2,19 +2,21 @@ public abstract class Attack
 {
 // Attributes
     protected string _name;
-    protected int _damage;
-    private List<string> _damageTypes;
-    protected List<string> _properties;
+    protected string _damage;
+
 
 // Constructor
-    public Attack()
+    public Attack(string name,string damage)
     {
-        
+        _name = name;
+        _damage = damage;
     }
 
 // Methods
-    public abstract void Display();
-    public abstract void DisplayDetailed();
+    public abstract string Display();
+
+
+    public abstract override string ToString();
 
     
 }
