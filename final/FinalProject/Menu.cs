@@ -1,14 +1,16 @@
 using System.Reflection.Metadata.Ecma335;
-Console.OutputEncoding = System.Text.Encoding.UTF8;
-public class Menu
+public class Menu()
 {
 // Attributes
     private List<Character> _party;
-    private List<Character> _mob;
-    private List<Character> _enemyTypeList;
-    private List<Dice> _diceLog;    
+    private List<Character> _mob;   
 // Constructor ?????
-    
+
+    public Menu(List<Character> characters) 
+    {
+        
+    }
+
 // Methods
     public void AddCharacter()
     {
@@ -19,23 +21,49 @@ public class Menu
         
     }
     
-    public void BuildMenu()
+    public void StatMenu()
     {
         Console.Clear();
+        int width = Console.WindowWidth;
+        int partyWidth = (width - 3)* 3 / 5;
+        int mobWidth = width - 3 - partyWidth;
+
         // Box-drawing characters
         char topLeft = '┌';
         char topRight = '┐';
-        // char bottomLeft = '└';
-        // char bottomRight = '┘';
+        char bottomLeft = '└';
+        char bottomRight = '┘';
         char horizontal = '─';
-        // char vertical = '│';
-        // char cross = '┼';
-        // char teeDown = '┬';
-        // char teeUp = '┴';
-        // char teeRight = '├';
-        // char teeLeft = '┤';
+        char vertical = '│';
+        char cross = '┼';
+        char teeDown = '┬';
+        char teeUp = '┴';
+        char teeRight = '├';
+        char teeLeft = '┤';
 
-        // Example usage
-        Console.WriteLine($"{topLeft}{new string(horizontal, Console.WindowWidth -2 )}{topRight}");
-        }
+        // Menu Header
+        Console.WriteLine($"{topLeft}{new string(horizontal, width -2 )}{topRight}");
+        Console.WriteLine($"{vertical}{Space((width-6)/2)}MENU{Space((width-6)/2)}{vertical}");
+        Console.WriteLine($"{teeRight}{new string(horizontal,partyWidth)}{teeDown}{new string(horizontal, mobWidth )}{teeLeft}");
+        Console.WriteLine($"{vertical}{Space((partyWidth - 5) / 2)}PARTY{Space(partyWidth - 5 - (partyWidth - 5) / 2)}{vertical}{Space((mobWidth - 3) / 2)}MOB{Space(mobWidth - 3 - (mobWidth - 3)/2)}{vertical}");
+        Console.WriteLine($"{teeRight}{new string(horizontal,partyWidth)}{cross}{new string(horizontal, mobWidth )}{teeLeft}");
+
+        // Console.WriteLine($"{}");
+
+    }
+
+    // public List<string> Party()
+    // {
+        
+    // }
+    //     public string Partyline()
+    // {
+        
+    // }
+
+    public string Space(int charCount)
+    {
+        string space = new string(' ', charCount);
+        return space;
+    }
 }
