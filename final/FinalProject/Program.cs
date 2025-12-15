@@ -6,9 +6,9 @@ class Program
     {
         TestMenu();
     }
-        static void TestMenu()
+    static void TestMenu()
     {
-        Menu menu = new Menu();
+        Menu menu = new Menu(LoadCharacters());
         menu.StatMenu();
     }
     static void TestDice()
@@ -25,5 +25,27 @@ class Program
         d2.RollDice();
         d3.RollDice();
         d4.RollDice();
+    }
+    static List<Character> LoadCharacters()
+    {
+        List<Character> characterstrings = new List<Character>();
+
+        string[] lines = System.IO.File.ReadAllLines("Characters.csv");
+
+        foreach(string line in lines)
+        {
+            string[] parts = line.Split("~~");
+            int[] scores = parts[5].Trim('[', ']').Split(',').Select(int.Parse).ToArray();
+            if (parts[0] == "Player")
+            {
+                characterstrings.Add(new PlayerCharacter(parts[1],int.Parse(parts[2]),int.Parse(parts[3]),int.Parse(parts[4]),))
+            }
+            else if (parts[0] == "Enemy")
+            {
+                
+            }
+        }
+
+        return characterstrings;
     }
 }

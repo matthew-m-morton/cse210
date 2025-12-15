@@ -3,11 +3,14 @@ public class Menu()
 {
 // Attributes
     private List<Character> _party;
-    private List<Character> _mob;
-    private List<Character> _enemyTypeList;
-    private List<Dice> _diceLog;    
+    private List<Character> _mob;   
 // Constructor ?????
-    
+
+    public Menu(List<Character> characters) 
+    {
+        
+    }
+
 // Methods
     public void AddCharacter()
     {
