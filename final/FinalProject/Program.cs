@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.PortableExecutable;
 
 class Program
 {
@@ -8,7 +9,8 @@ class Program
     }
     static void TestMenu()
     {
-        Menu menu = new Menu(LoadCharacters());
+        List<Character> characters = LoadCharacters();
+        Menu menu = new Menu(characters);
         menu.StatMenu();
     }
     static void TestDice()
@@ -34,15 +36,38 @@ class Program
 
         foreach(string line in lines)
         {
-            string[] parts = line.Split("~~");
+            string[] parts = line.Split("~~~");
+            // parse scores
             int[] scores = parts[5].Trim('[', ']').Split(',').Select(int.Parse).ToArray();
+
+            // creating attacks list
+            string[] wholeAttackStrings = parts[6].Split("|");
+            List<Attack> attacks =  new List<Attack>();
+            foreach(string attackString in wholeAttackStrings)
+            {
+                string[] attackParts = attackString.Split("~~");
+                if (attackParts[0] == "Melee")
+                {
+                    attacks.Add(new MeleeAttack(attackParts[1],attackParts[2]));
+                }
+                else if (attackParts[0] == "Ranged")
+                {
+                    attacks.Add(new RangedAttack(attackParts[1],attackParts[2], int.Parse(attackParts[3]), int.Parse(attackParts[4])));
+                }
+            }
+        
+
+
             if (parts[0] == "Player")
             {
-                characterstrings.Add(new PlayerCharacter(parts[1],int.Parse(parts[2]),int.Parse(parts[3]),int.Parse(parts[4]),))
+                // parse spell slots and proficiencies
+                int[] spellSlots = parts[10].Trim('[', ']').Split(',').Select(int.Parse).ToArray();
+                bool[] proficiencies = parts[11].Trim('[', ']').Split(',').Select(bool.Parse).ToArray();
+                characterstrings.Add(new PlayerCharacter(parts[1],int.Parse(parts[2]),int.Parse(parts[3]),int.Parse(parts[4]),scores,attacks,int.Parse(parts[7]), int.Parse(parts[8]),parts[9],spellSlots,proficiencies));
             }
             else if (parts[0] == "Enemy")
             {
-                
+                characterstrings.Add(new EnemyCharacter(parts[1],int.Parse(parts[2]),int.Parse(parts[3]),int.Parse(parts[4]),scores,attacks,int.Parse(parts[7]), int.Parse(parts[8]), parts[9]));                
             }
         }
 

@@ -4,11 +4,11 @@ public class EnemyCharacter : Character
 {
 // Attributes
     private decimal _cr;
-    private List<string> _actions;
+    private string _actions;
 
 // Constructor
     public EnemyCharacter(string name, int hp, int hpMax, int armorClass, int[] abilityScores, List<Attack> attacks, 
-    int speed, decimal cr, List<string> actions) : base (name, hp, hpMax, armorClass, abilityScores, attacks, speed)
+    int speed, decimal cr, string actions) : base (name, hp, hpMax, armorClass, abilityScores, attacks, speed)
     {
         _cr = cr;
         _actions = actions;

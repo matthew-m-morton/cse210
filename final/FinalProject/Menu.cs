@@ -1,14 +1,14 @@
-using System.Reflection.Metadata.Ecma335;
 public class Menu()
 {
 // Attributes
-    private List<Character> _party;
-    private List<Character> _mob;   
+    private List<PlayerCharacter> _party;
+    private List<EnemyCharacter> _mob;   
 // Constructor ?????
 
     public Menu(List<Character> characters) 
     {
-        
+        _party = characters.OfType<PlayerCharacter>().ToList();
+        _mob = characters.OfType<EnemyCharacter>().ToList();
     }
 
 // Methods
