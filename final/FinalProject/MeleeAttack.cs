@@ -11,7 +11,7 @@ public class MeleeAttack : Attack
 // Methods
     public override string Display()
     {
-        string displayString = $"{_name},{_damage}";
+        string displayString = $"{_name} {_damage} ";
         return displayString;
     }
 

@@ -27,13 +27,14 @@ public abstract class Character
     }
 
 // Methods
-    public abstract void Heal();
-    public abstract void Damage();
-    public int RollInit()
+    // public abstract void Heal();
+    // public abstract void Damage();
+    public (string, int) RollInit()
     {
-        int dexMod = (_abilityScores[1] - 10) % 2;
-        Dice initiative = new Dice(20,1,dexMod);
-        return initiative.RollDice();
+        int dexMod = (_abilityScores[1] - 10) / 2;
+        Dice roll = new Dice(20,1,dexMod);
+        (string,int) initiative = (_name,roll.RollDice());
+        return initiative;
     }
     public abstract List<string> Display();
     public  List<string> DisplayAttacks()

@@ -14,23 +14,33 @@ public class EnemyCharacter : Character
         _actions = actions;
     }
 // Methods
-    public override void Heal(){
+    // public override void Heal(){
 
-    }
-    public override void Damage(){
+    // }
+    // public override void Damage(){
 
-    }
+    // }
 
     public override List<string> Display(){
-        string health = $"{_hp}/{_hpMax}";
-        string strScores = $"STR: {_abilityScores[0]}";
-        string dexScores = $"DEX: {_abilityScores[1]}";
-        string conScores = $"CON: {_abilityScores[2]}";
-        string intScores = $"INT: {_abilityScores[3]}";
-        string wisScores = $"WIS: {_abilityScores[4]}";
-        string chaScores = $"CHA: {_abilityScores[5]}";
+        string health = $"HP: {_hp}/{_hpMax} ";
+        string cr = $"CR: {_cr} ";
+        string ac = $"AC: {_armorClass} "; 
+        string speed = $"Speed:{_speed} ";
+        string strScores = $"STR: {_abilityScores[0]} ";
+        string dexScores = $"DEX: {_abilityScores[1]} ";
+        string conScores = $"CON: {_abilityScores[2]} ";
+        string intScores = $"INT: {_abilityScores[3]} ";
+        string wisScores = $"WIS: {_abilityScores[4]} ";
+        string chaScores = $"CHA: {_abilityScores[5]} ";
 
-        List<string> strings = new List<string> {_name, health, strScores, dexScores, conScores, intScores, wisScores, chaScores };
+        List<string> strings = new List<string> {_name+" ", ac, speed, health, strScores, dexScores, conScores, intScores, wisScores, chaScores};
+        foreach(Attack attack in _attacks)
+        {
+            string attackstr = attack.Display();
+            strings.Add(attackstr);
+        }
+        strings.Add(_actions);
+        strings.Add(" ");
         return strings;
     }
 

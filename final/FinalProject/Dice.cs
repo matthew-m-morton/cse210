@@ -12,14 +12,15 @@ public class Dice
         _sides = sides;
         _quantity = quantity;
         _modifier = modifier;
+        _manual = false;
     }   
 
 
 // Methods
     public int RollDice()
     {
-        Console.Write("Would you like to roll manually? (true/false) ");
-        _manual = bool.Parse(Console.ReadLine());
+        // Console.Write("Would you like to roll manually? (true/false) ");
+        // _manual = bool.Parse(Console.ReadLine());
         int roll;
         if (_manual)
         {

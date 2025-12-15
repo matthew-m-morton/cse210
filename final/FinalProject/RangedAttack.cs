@@ -13,7 +13,7 @@ public class RangedAttack : Attack
 // Methods
     public override string Display()
     {
-        string displayString = $"{_name},{_damage},{_normalRange}/{_maxRange}";
+        string displayString = $"{_name} {_damage} {_normalRange}/{_maxRange} ";
         return displayString;
     }
 

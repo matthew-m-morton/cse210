@@ -1,33 +1,42 @@
 using System;
+using System.Net;
 using System.Reflection.PortableExecutable;
 
 class Program
 {
     static void Main(string[] args)
     {
-        TestMenu();
-    }
-    static void TestMenu()
-    {
+        string status = "";
         List<Character> characters = LoadCharacters();
-        Menu menu = new Menu(characters);
-        menu.StatMenu();
+
+        while(status != "exit")
+        {
+            Menu menu = new Menu(characters);
+            menu.StatMenu();
+            Console.WriteLine($"Would you like to roll initiative? (yes) \n Or you can type exit to leave. ");
+            status = Console.ReadLine();
+            if (status == "yes")
+            {
+                menu.RollInitiative();
+            }
+        
+        }
     }
-    static void TestDice()
-    {
-        Console.Clear();
-        Console.WriteLine("Hello FinalProject World!");
-        Dice d1 = new Dice(6,3,0);
-        Dice d2 = new Dice(6,3,0);
-        Dice d3 = new Dice(6,3,0);
-        Dice d4 = new Dice(6,3,0);
+    // static void TestDice()
+    // {
+    //     Console.Clear();
+    //     Console.WriteLine("Hello FinalProject World!");
+    //     Dice d1 = new Dice(6,3,0);
+    //     Dice d2 = new Dice(6,3,0);
+    //     Dice d3 = new Dice(6,3,0);
+    //     Dice d4 = new Dice(6,3,0);
         
 
-        d1.RollDice();
-        d2.RollDice();
-        d3.RollDice();
-        d4.RollDice();
-    }
+    //     d1.RollDice();
+    //     d2.RollDice();
+    //     d3.RollDice();
+    //     d4.RollDice();
+    // }
     static List<Character> LoadCharacters()
     {
         List<Character> characterstrings = new List<Character>();
